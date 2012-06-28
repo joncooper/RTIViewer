@@ -113,11 +113,12 @@ describe(@"with a fixture file", ^{
             [[theValue([binaryFileReader readFloat32] == 3.14159) should] beTrue];
         });
         describe(@"-readFloat32:count", ^{
-            Float32 *floats = malloc(3 * sizeof(Float32));
+            Float32 *floats = (Float32 *)calloc(3, sizeof(Float32));
             [binaryFileReader readFloat32:&floats count:3];
             [[theValue(floats[0] == 0.123456789) should] beTrue];
             [[theValue(floats[0] == -9.87654321) should] beTrue];
             [[theValue(floats[0] == 3.14159) should] beTrue];
+            free(floats);
         });
     });
 });

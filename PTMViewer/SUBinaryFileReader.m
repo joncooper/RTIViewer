@@ -87,7 +87,7 @@
 
 - (void)readFloat32:(Float32 **)array count:(NSUInteger)count {
     int bytes = 4 * count;
-    [_fileData getBytes:array range:NSMakeRange(_currentPosition, bytes)];
+    [_fileData getBytes:array[0] range:NSMakeRange(_currentPosition, bytes)];
     _currentPosition += bytes;
 }
 
