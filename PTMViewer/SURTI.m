@@ -8,6 +8,7 @@
 
 #import "SURTI.h"
 #import "SUBinaryFileReader.h"
+#include <stdlib.h>
 
 struct SUSphericalCoordinate {
     double theta;
@@ -25,30 +26,36 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
 
 @implementation SURTI {
     SUBinaryFileReader *_binaryFileReader;
-    NSInteger _fileType;
-    NSInteger _width;
-    NSUInteger _height;
-    NSUInteger _bands;
-    NSUInteger _terms;
-    NSUInteger _order;
-    NSUInteger _basisType;
-    NSUInteger _elementSize;
-    
-    UInt8 *_coefficients;
-    Float32 *_scale;
-    Float32 *_bias;
-    Float32 *_weights;
 }
 
-- (void)initWithFilename:(NSString *)filename {
-    _binaryFileReader = nil;
+@synthesize fileType = _fileType;
+@synthesize width = _width;
+@synthesize height = _height;
+@synthesize bands = _bands;
+@synthesize terms = _terms;
+@synthesize basisType = _basisType;
+@synthesize elementSize = _elementSize;
+@synthesize order = _order;
+
+@synthesize scale = _scale;
+@synthesize bias = _bias;
+@synthesize coefficients = _coefficients;
+
+@synthesize weights = _weights;
+
+- (id)initWithURL:(NSURL *)url {
+    self = [super init];
+    if (self) {
+        _binaryFileReader = [[SUBinaryFileReader alloc] initWithURL:url]; 
+    }
+    return self;
 }
 
-- (void)parse {
+- (void)parseHeaders {
     // Strip all header comment lines
     while ([[_binaryFileReader peekLine] characterAtIndex:0] == '#')
         [_binaryFileReader readLine];
-
+    
     _fileType = [[_binaryFileReader readLine] integerValue];
     NSArray *header_line_2 = [[_binaryFileReader readLine] componentsSeparatedByString:@" "];
     NSArray *header_line_3 = [[_binaryFileReader readLine] componentsSeparatedByString:@" "];
@@ -69,12 +76,16 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
     
     NSAssert(_fileType == 3, @"Cannot parse non-HSH file type.");
     
-    _scale = malloc(_terms * sizeof(Float32));
+    _scale = (Float32 *)calloc(_terms, sizeof(Float32));
     [_binaryFileReader readFloat32:&_scale count:_terms];
     
-    _bias = malloc(_terms * sizeof(Float32));
+    _bias = (Float32 *)calloc(_terms, sizeof(Float32));
     [_binaryFileReader readFloat32:&_bias count:_terms];
-        
+}
+
+- (void)parse {        
+    [self parseHeaders];
+    
     NSUInteger coefficentCount = _width * _height * _bands * _terms;
     _coefficients = malloc(coefficentCount * sizeof(UInt8));
     
@@ -90,7 +101,7 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
 }
 
 - (void)computeWeights:(SUSphericalCoordinate)lightLocation {
-    _weights = malloc(16 *sizeof(Float32));
+    _weights = malloc(16 * sizeof(Float32));
     
     double theta = lightLocation.theta;
     double phi = lightLocation.phi;
