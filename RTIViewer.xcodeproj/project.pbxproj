@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4955239900CE4C3B8BA65C32 /* libPods-PTMViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AAAEF45B3043F89B546619 /* libPods-PTMViewerTests.a */; };
+		610C29E8159CB35F007EC070 /* Ban-Papyrus_1000.ptm in Resources */ = {isa = PBXBuildFile; fileRef = 610C29E6159CB35F007EC070 /* Ban-Papyrus_1000.ptm */; };
+		610C29E9159CB35F007EC070 /* Ban-Papyrus_1000.ptm in Resources */ = {isa = PBXBuildFile; fileRef = 610C29E6159CB35F007EC070 /* Ban-Papyrus_1000.ptm */; };
+		610C29EA159CB35F007EC070 /* coin.rti in Resources */ = {isa = PBXBuildFile; fileRef = 610C29E7159CB35F007EC070 /* coin.rti */; };
+		610C29EB159CB35F007EC070 /* coin.rti in Resources */ = {isa = PBXBuildFile; fileRef = 610C29E7159CB35F007EC070 /* coin.rti */; };
+		610C2A09159CB42C007EC070 /* PTM.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29EF159CB42C007EC070 /* PTM.fsh */; };
+		610C2A0A159CB42C007EC070 /* PTM.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F0159CB42C007EC070 /* PTM.vsh */; };
+		610C2A0B159CB42C007EC070 /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F1159CB42C007EC070 /* Shader.fsh */; };
+		610C2A0C159CB42C007EC070 /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F2159CB42C007EC070 /* Shader.vsh */; };
+		610C2A0D159CB42C007EC070 /* RTI.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F4159CB42C007EC070 /* RTI.fsh */; };
+		610C2A0E159CB42C007EC070 /* RTI.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F5159CB42C007EC070 /* RTI.vsh */; };
+		610C2A0F159CB42C007EC070 /* SURTI.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F7159CB42C007EC070 /* SURTI.m */; };
+		610C2A10159CB42C007EC070 /* SUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F9159CB42C007EC070 /* SUAppDelegate.m */; };
+		610C2A11159CB42C007EC070 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 610C29FB159CB42C007EC070 /* InfoPlist.strings */; };
+		610C2A12159CB42C007EC070 /* SUViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 610C29FD159CB42C007EC070 /* SUViewController_iPad.xib */; };
+		610C2A13159CB42C007EC070 /* SUViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 610C29FF159CB42C007EC070 /* SUViewController_iPhone.xib */; };
+		610C2A14159CB42C007EC070 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2A01159CB42C007EC070 /* main.m */; };
+		610C2A15159CB42C007EC070 /* RTIViewer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610C2A02159CB42C007EC070 /* RTIViewer-Info.plist */; };
+		610C2A16159CB42C007EC070 /* SUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2A05159CB42C007EC070 /* SUViewController.m */; };
+		610C2A17159CB42C007EC070 /* SUBinaryFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2A08159CB42C007EC070 /* SUBinaryFileReader.m */; };
+		610C2A23159CB4CF007EC070 /* fixture.dat in Resources */ = {isa = PBXBuildFile; fileRef = 610C2A19159CB4CF007EC070 /* fixture.dat */; };
+		610C2A24159CB4CF007EC070 /* fixture_gen.c in Sources */ = {isa = PBXBuildFile; fileRef = 610C2A1A159CB4CF007EC070 /* fixture_gen.c */; };
+		610C2A25159CB4CF007EC070 /* SURTISpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2A1C159CB4CF007EC070 /* SURTISpec.m */; };
+		610C2A26159CB4CF007EC070 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 610C2A1E159CB4CF007EC070 /* InfoPlist.strings */; };
+		610C2A27159CB4CF007EC070 /* RTIViewerTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 610C2A20159CB4CF007EC070 /* RTIViewerTests-Info.plist */; };
+		610C2A28159CB4CF007EC070 /* SUBinaryFileReaderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C2A22159CB4CF007EC070 /* SUBinaryFileReaderSpec.m */; };
+		613F1D30159BAAD00045627E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D2F159BAAD00045627E /* UIKit.framework */; };
+		613F1D32159BAAD00045627E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D31159BAAD00045627E /* Foundation.framework */; };
+		613F1D34159BAAD00045627E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D33159BAAD00045627E /* CoreGraphics.framework */; };
+		613F1D36159BAAD00045627E /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D35159BAAD00045627E /* GLKit.framework */; };
+		613F1D38159BAAD00045627E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D37159BAAD00045627E /* OpenGLES.framework */; };
+		613F1D59159BAAD10045627E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D58159BAAD10045627E /* SenTestingKit.framework */; };
+		613F1D5A159BAAD10045627E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D2F159BAAD00045627E /* UIKit.framework */; };
+		613F1D5B159BAAD10045627E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D31159BAAD00045627E /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		613F1D5C159BAAD10045627E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 613F1D22159BAAD00045627E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 613F1D2A159BAAD00045627E;
+			remoteInfo = PTMViewer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		35AAAEF45B3043F89B546619 /* libPods-PTMViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PTMViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		610C29E6159CB35F007EC070 /* Ban-Papyrus_1000.ptm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Ban-Papyrus_1000.ptm"; sourceTree = "<group>"; };
+		610C29E7159CB35F007EC070 /* coin.rti */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coin.rti; sourceTree = "<group>"; };
+		610C29EF159CB42C007EC070 /* PTM.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PTM.fsh; sourceTree = "<group>"; };
+		610C29F0159CB42C007EC070 /* PTM.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = PTM.vsh; sourceTree = "<group>"; };
+		610C29F1159CB42C007EC070 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		610C29F2159CB42C007EC070 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		610C29F4159CB42C007EC070 /* RTI.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RTI.fsh; sourceTree = "<group>"; };
+		610C29F5159CB42C007EC070 /* RTI.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RTI.vsh; sourceTree = "<group>"; };
+		610C29F6159CB42C007EC070 /* SURTI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SURTI.h; sourceTree = "<group>"; };
+		610C29F7159CB42C007EC070 /* SURTI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SURTI.m; sourceTree = "<group>"; };
+		610C29F8159CB42C007EC070 /* SUAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SUAppDelegate.h; path = Source/SUAppDelegate.h; sourceTree = "<group>"; };
+		610C29F9159CB42C007EC070 /* SUAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SUAppDelegate.m; path = Source/SUAppDelegate.m; sourceTree = "<group>"; };
+		610C29FC159CB42C007EC070 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		610C29FE159CB42C007EC070 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SUViewController_iPad.xib; sourceTree = "<group>"; };
+		610C2A00159CB42C007EC070 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SUViewController_iPhone.xib; sourceTree = "<group>"; };
+		610C2A01159CB42C007EC070 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		610C2A02159CB42C007EC070 /* RTIViewer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RTIViewer-Info.plist"; sourceTree = "<group>"; };
+		610C2A03159CB42C007EC070 /* RTIViewer-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTIViewer-Prefix.pch"; sourceTree = "<group>"; };
+		610C2A04159CB42C007EC070 /* SUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SUViewController.h; path = Source/SUViewController.h; sourceTree = "<group>"; };
+		610C2A05159CB42C007EC070 /* SUViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SUViewController.m; path = Source/SUViewController.m; sourceTree = "<group>"; };
+		610C2A07159CB42C007EC070 /* SUBinaryFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUBinaryFileReader.h; sourceTree = "<group>"; };
+		610C2A08159CB42C007EC070 /* SUBinaryFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUBinaryFileReader.m; sourceTree = "<group>"; };
+		610C2A19159CB4CF007EC070 /* fixture.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixture.dat; sourceTree = "<group>"; };
+		610C2A1A159CB4CF007EC070 /* fixture_gen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fixture_gen.c; sourceTree = "<group>"; };
+		610C2A1C159CB4CF007EC070 /* SURTISpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SURTISpec.m; sourceTree = "<group>"; };
+		610C2A1F159CB4CF007EC070 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		610C2A20159CB4CF007EC070 /* RTIViewerTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RTIViewerTests-Info.plist"; sourceTree = "<group>"; };
+		610C2A22159CB4CF007EC070 /* SUBinaryFileReaderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUBinaryFileReaderSpec.m; sourceTree = "<group>"; };
+		613F1D2B159BAAD00045627E /* RTIViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTIViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		613F1D2F159BAAD00045627E /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		613F1D31159BAAD00045627E /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		613F1D33159BAAD00045627E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		613F1D35159BAAD00045627E /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		613F1D37159BAAD00045627E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		613F1D57159BAAD10045627E /* RTIViewerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTIViewerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		613F1D58159BAAD10045627E /* SenTestingKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PTMViewerTests.xcconfig"; path = "Pods/Pods-PTMViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		613F1D28159BAAD00045627E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				613F1D30159BAAD00045627E /* UIKit.framework in Frameworks */,
+				613F1D32159BAAD00045627E /* Foundation.framework in Frameworks */,
+				613F1D34159BAAD00045627E /* CoreGraphics.framework in Frameworks */,
+				613F1D36159BAAD00045627E /* GLKit.framework in Frameworks */,
+				613F1D38159BAAD00045627E /* OpenGLES.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		613F1D53159BAAD10045627E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				613F1D59159BAAD10045627E /* SenTestingKit.framework in Frameworks */,
+				613F1D5A159BAAD10045627E /* UIKit.framework in Frameworks */,
+				613F1D5B159BAAD10045627E /* Foundation.framework in Frameworks */,
+				4955239900CE4C3B8BA65C32 /* libPods-PTMViewerTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		610C29E5159CB35F007EC070 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				610C29E6159CB35F007EC070 /* Ban-Papyrus_1000.ptm */,
+				610C29E7159CB35F007EC070 /* coin.rti */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		610C29EC159CB36D007EC070 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				610C29EE159CB42C007EC070 /* PTM */,
+				610C29F3159CB42C007EC070 /* RTI */,
+				610C2A06159CB42C007EC070 /* Utility */,
+				610C29FA159CB42C007EC070 /* Supporting Files */,
+				610C29F8159CB42C007EC070 /* SUAppDelegate.h */,
+				610C29F9159CB42C007EC070 /* SUAppDelegate.m */,
+				610C2A04159CB42C007EC070 /* SUViewController.h */,
+				610C2A05159CB42C007EC070 /* SUViewController.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		610C29ED159CB373007EC070 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				610C2A18159CB4CF007EC070 /* Fixtures */,
+				610C2A1B159CB4CF007EC070 /* RTI */,
+				610C2A1D159CB4CF007EC070 /* Supporting Files */,
+				610C2A21159CB4CF007EC070 /* Utility */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		610C29EE159CB42C007EC070 /* PTM */ = {
+			isa = PBXGroup;
+			children = (
+				610C29EF159CB42C007EC070 /* PTM.fsh */,
+				610C29F0159CB42C007EC070 /* PTM.vsh */,
+				610C29F1159CB42C007EC070 /* Shader.fsh */,
+				610C29F2159CB42C007EC070 /* Shader.vsh */,
+			);
+			name = PTM;
+			path = Source/PTM;
+			sourceTree = "<group>";
+		};
+		610C29F3159CB42C007EC070 /* RTI */ = {
+			isa = PBXGroup;
+			children = (
+				610C29F4159CB42C007EC070 /* RTI.fsh */,
+				610C29F5159CB42C007EC070 /* RTI.vsh */,
+				610C29F6159CB42C007EC070 /* SURTI.h */,
+				610C29F7159CB42C007EC070 /* SURTI.m */,
+			);
+			name = RTI;
+			path = Source/RTI;
+			sourceTree = "<group>";
+		};
+		610C29FA159CB42C007EC070 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				610C29FB159CB42C007EC070 /* InfoPlist.strings */,
+				610C29FD159CB42C007EC070 /* SUViewController_iPad.xib */,
+				610C29FF159CB42C007EC070 /* SUViewController_iPhone.xib */,
+				610C2A01159CB42C007EC070 /* main.m */,
+				610C2A02159CB42C007EC070 /* RTIViewer-Info.plist */,
+				610C2A03159CB42C007EC070 /* RTIViewer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = "Source/Supporting Files";
+			sourceTree = "<group>";
+		};
+		610C2A06159CB42C007EC070 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				610C2A07159CB42C007EC070 /* SUBinaryFileReader.h */,
+				610C2A08159CB42C007EC070 /* SUBinaryFileReader.m */,
+			);
+			name = Utility;
+			path = Source/Utility;
+			sourceTree = "<group>";
+		};
+		610C2A18159CB4CF007EC070 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				610C2A19159CB4CF007EC070 /* fixture.dat */,
+				610C2A1A159CB4CF007EC070 /* fixture_gen.c */,
+			);
+			name = Fixtures;
+			path = Tests/Fixtures;
+			sourceTree = "<group>";
+		};
+		610C2A1B159CB4CF007EC070 /* RTI */ = {
+			isa = PBXGroup;
+			children = (
+				610C2A1C159CB4CF007EC070 /* SURTISpec.m */,
+			);
+			name = RTI;
+			path = Tests/RTI;
+			sourceTree = "<group>";
+		};
+		610C2A1D159CB4CF007EC070 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				610C2A1E159CB4CF007EC070 /* InfoPlist.strings */,
+				610C2A20159CB4CF007EC070 /* RTIViewerTests-Info.plist */,
+			);
+			name = "Supporting Files";
+			path = "Tests/Supporting Files";
+			sourceTree = "<group>";
+		};
+		610C2A21159CB4CF007EC070 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				610C2A22159CB4CF007EC070 /* SUBinaryFileReaderSpec.m */,
+			);
+			name = Utility;
+			path = Tests/Utility;
+			sourceTree = "<group>";
+		};
+		613F1D20159BAAD00045627E = {
+			isa = PBXGroup;
+			children = (
+				610C29E5159CB35F007EC070 /* Assets */,
+				610C29EC159CB36D007EC070 /* Source */,
+				610C29ED159CB373007EC070 /* Tests */,
+				613F1D2E159BAAD00045627E /* Frameworks */,
+				613F1D2C159BAAD00045627E /* Products */,
+				9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		613F1D2C159BAAD00045627E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				613F1D2B159BAAD00045627E /* RTIViewer.app */,
+				613F1D57159BAAD10045627E /* RTIViewerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		613F1D2E159BAAD00045627E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				613F1D2F159BAAD00045627E /* UIKit.framework */,
+				613F1D31159BAAD00045627E /* Foundation.framework */,
+				613F1D33159BAAD00045627E /* CoreGraphics.framework */,
+				613F1D35159BAAD00045627E /* GLKit.framework */,
+				613F1D37159BAAD00045627E /* OpenGLES.framework */,
+				613F1D58159BAAD10045627E /* SenTestingKit.framework */,
+				35AAAEF45B3043F89B546619 /* libPods-PTMViewerTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		613F1D2A159BAAD00045627E /* RTIViewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 613F1D69159BAAD10045627E /* Build configuration list for PBXNativeTarget "RTIViewer" */;
+			buildPhases = (
+				613F1D27159BAAD00045627E /* Sources */,
+				613F1D28159BAAD00045627E /* Frameworks */,
+				613F1D29159BAAD00045627E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RTIViewer;
+			productName = PTMViewer;
+			productReference = 613F1D2B159BAAD00045627E /* RTIViewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		613F1D56159BAAD10045627E /* RTIViewerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 613F1D6C159BAAD10045627E /* Build configuration list for PBXNativeTarget "RTIViewerTests" */;
+			buildPhases = (
+				613F1D52159BAAD10045627E /* Sources */,
+				613F1D53159BAAD10045627E /* Frameworks */,
+				613F1D54159BAAD10045627E /* Resources */,
+				613F1D55159BAAD10045627E /* ShellScript */,
+				2DD8E97CA3D84067836C6F9A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				613F1D5D159BAAD10045627E /* PBXTargetDependency */,
+			);
+			name = RTIViewerTests;
+			productName = PTMViewerTests;
+			productReference = 613F1D57159BAAD10045627E /* RTIViewerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		613F1D22159BAAD00045627E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SU;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 613F1D25159BAAD00045627E /* Build configuration list for PBXProject "RTIViewer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 613F1D20159BAAD00045627E;
+			productRefGroup = 613F1D2C159BAAD00045627E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				613F1D2A159BAAD00045627E /* RTIViewer */,
+				613F1D56159BAAD10045627E /* RTIViewerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		613F1D29159BAAD00045627E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610C29E8159CB35F007EC070 /* Ban-Papyrus_1000.ptm in Resources */,
+				610C29EA159CB35F007EC070 /* coin.rti in Resources */,
+				610C2A11159CB42C007EC070 /* InfoPlist.strings in Resources */,
+				610C2A12159CB42C007EC070 /* SUViewController_iPad.xib in Resources */,
+				610C2A13159CB42C007EC070 /* SUViewController_iPhone.xib in Resources */,
+				610C2A15159CB42C007EC070 /* RTIViewer-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		613F1D54159BAAD10045627E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610C29E9159CB35F007EC070 /* Ban-Papyrus_1000.ptm in Resources */,
+				610C29EB159CB35F007EC070 /* coin.rti in Resources */,
+				610C2A23159CB4CF007EC070 /* fixture.dat in Resources */,
+				610C2A26159CB4CF007EC070 /* InfoPlist.strings in Resources */,
+				610C2A27159CB4CF007EC070 /* RTIViewerTests-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DD8E97CA3D84067836C6F9A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-PTMViewerTests-resources.sh\"\n";
+		};
+		613F1D55159BAAD10045627E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		613F1D27159BAAD00045627E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610C2A09159CB42C007EC070 /* PTM.fsh in Sources */,
+				610C2A0A159CB42C007EC070 /* PTM.vsh in Sources */,
+				610C2A0B159CB42C007EC070 /* Shader.fsh in Sources */,
+				610C2A0C159CB42C007EC070 /* Shader.vsh in Sources */,
+				610C2A0D159CB42C007EC070 /* RTI.fsh in Sources */,
+				610C2A0E159CB42C007EC070 /* RTI.vsh in Sources */,
+				610C2A0F159CB42C007EC070 /* SURTI.m in Sources */,
+				610C2A10159CB42C007EC070 /* SUAppDelegate.m in Sources */,
+				610C2A14159CB42C007EC070 /* main.m in Sources */,
+				610C2A16159CB42C007EC070 /* SUViewController.m in Sources */,
+				610C2A17159CB42C007EC070 /* SUBinaryFileReader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		613F1D52159BAAD10045627E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				610C2A24159CB4CF007EC070 /* fixture_gen.c in Sources */,
+				610C2A25159CB4CF007EC070 /* SURTISpec.m in Sources */,
+				610C2A28159CB4CF007EC070 /* SUBinaryFileReaderSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		613F1D5D159BAAD10045627E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 613F1D2A159BAAD00045627E /* RTIViewer */;
+			targetProxy = 613F1D5C159BAAD10045627E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		610C29FB159CB42C007EC070 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				610C29FC159CB42C007EC070 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		610C29FD159CB42C007EC070 /* SUViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				610C29FE159CB42C007EC070 /* en */,
+			);
+			name = SUViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		610C29FF159CB42C007EC070 /* SUViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				610C2A00159CB42C007EC070 /* en */,
+			);
+			name = SUViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		610C2A1E159CB4CF007EC070 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				610C2A1F159CB4CF007EC070 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		613F1D67159BAAD10045627E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		613F1D68159BAAD10045627E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		613F1D6A159BAAD10045627E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Supporting Files/RTIViewer-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Source/Supporting Files/RTIViewer-Info.plist";
+				PRODUCT_NAME = RTIViewer;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		613F1D6B159BAAD10045627E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Supporting Files/RTIViewer-Prefix.pch";
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				INFOPLIST_FILE = "Source/Supporting Files/RTIViewer-Info.plist";
+				PRODUCT_NAME = RTIViewer;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		613F1D6D159BAAD10045627E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RTIViewer.app/RTIViewer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Supporting Files/RTIViewer-Prefix.pch";
+				INFOPLIST_FILE = "Tests/Supporting Files/RTIViewerTests-Info.plist";
+				PRODUCT_NAME = RTIViewerTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		613F1D6E159BAAD10045627E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RTIViewer.app/RTIViewer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/Supporting Files/RTIViewer-Prefix.pch";
+				INFOPLIST_FILE = "Tests/Supporting Files/RTIViewerTests-Info.plist";
+				PRODUCT_NAME = RTIViewerTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		613F1D25159BAAD00045627E /* Build configuration list for PBXProject "RTIViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				613F1D67159BAAD10045627E /* Debug */,
+				613F1D68159BAAD10045627E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		613F1D69159BAAD10045627E /* Build configuration list for PBXNativeTarget "RTIViewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				613F1D6A159BAAD10045627E /* Debug */,
+				613F1D6B159BAAD10045627E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		613F1D6C159BAAD10045627E /* Build configuration list for PBXNativeTarget "RTIViewerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				613F1D6D159BAAD10045627E /* Debug */,
+				613F1D6E159BAAD10045627E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 613F1D22159BAAD00045627E /* Project object */;
+}
