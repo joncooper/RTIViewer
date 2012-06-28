@@ -33,6 +33,11 @@
 		613F1D81159BB8100045627E /* SUBinaryFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D80159BB8100045627E /* SUBinaryFileReader.m */; };
 		61F8B560159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F8B55F159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m */; };
 		61F8B566159BFEE100F8DE35 /* fixture.dat in Resources */ = {isa = PBXBuildFile; fileRef = 61F8B564159BFEE100F8DE35 /* fixture.dat */; };
+		61F8B571159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm in Resources */ = {isa = PBXBuildFile; fileRef = 61F8B570159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm */; };
+		61F8B572159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm in Resources */ = {isa = PBXBuildFile; fileRef = 61F8B570159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm */; };
+		61F8B575159C0FBE00F8DE35 /* coin.rti in Resources */ = {isa = PBXBuildFile; fileRef = 61F8B574159C0FBE00F8DE35 /* coin.rti */; };
+		61F8B576159C0FBE00F8DE35 /* coin.rti in Resources */ = {isa = PBXBuildFile; fileRef = 61F8B574159C0FBE00F8DE35 /* coin.rti */; };
+		61F8B578159C0FE100F8DE35 /* SURTISpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F8B577159C0FE100F8DE35 /* SURTISpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +85,9 @@
 		61F8B55F159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUBinaryFileReaderSpec.m; sourceTree = "<group>"; };
 		61F8B563159BFEE100F8DE35 /* fixture_gen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fixture_gen.c; sourceTree = "<group>"; };
 		61F8B564159BFEE100F8DE35 /* fixture.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = fixture.dat; sourceTree = "<group>"; };
+		61F8B570159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Ban-Papyrus_1000.ptm"; sourceTree = "<group>"; };
+		61F8B574159C0FBE00F8DE35 /* coin.rti */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coin.rti; sourceTree = "<group>"; };
+		61F8B577159C0FE100F8DE35 /* SURTISpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SURTISpec.m; sourceTree = "<group>"; };
 		9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PTMViewerTests.xcconfig"; path = "Pods/Pods-PTMViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -113,6 +121,8 @@
 		613F1D20159BAAD00045627E = {
 			isa = PBXGroup;
 			children = (
+				61F8B573159C0FB000F8DE35 /* RTI Files */,
+				61F8B56E159C0F6500F8DE35 /* PTM Files */,
 				613F1D39159BAAD00045627E /* PTMViewer */,
 				613F1D5E159BAAD10045627E /* PTMViewerTests */,
 				613F1D2E159BAAD00045627E /* Frameworks */,
@@ -180,6 +190,7 @@
 				61F8B562159BFB1200F8DE35 /* Fixtures */,
 				613F1D5F159BAAD10045627E /* Supporting Files */,
 				61F8B55F159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m */,
+				61F8B577159C0FE100F8DE35 /* SURTISpec.m */,
 			);
 			path = PTMViewerTests;
 			sourceTree = "<group>";
@@ -213,6 +224,22 @@
 				61F8B564159BFEE100F8DE35 /* fixture.dat */,
 			);
 			name = Fixtures;
+			sourceTree = "<group>";
+		};
+		61F8B56E159C0F6500F8DE35 /* PTM Files */ = {
+			isa = PBXGroup;
+			children = (
+				61F8B570159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm */,
+			);
+			name = "PTM Files";
+			sourceTree = "<group>";
+		};
+		61F8B573159C0FB000F8DE35 /* RTI Files */ = {
+			isa = PBXGroup;
+			children = (
+				61F8B574159C0FBE00F8DE35 /* coin.rti */,
+			);
+			name = "RTI Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +319,8 @@
 				613F1D48159BAAD00045627E /* Shader.vsh in Resources */,
 				613F1D4E159BAAD00045627E /* SUViewController_iPhone.xib in Resources */,
 				613F1D51159BAAD00045627E /* SUViewController_iPad.xib in Resources */,
+				61F8B571159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm in Resources */,
+				61F8B575159C0FBE00F8DE35 /* coin.rti in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +330,8 @@
 			files = (
 				613F1D63159BAAD10045627E /* InfoPlist.strings in Resources */,
 				61F8B566159BFEE100F8DE35 /* fixture.dat in Resources */,
+				61F8B572159C0F7D00F8DE35 /* Ban-Papyrus_1000.ptm in Resources */,
+				61F8B576159C0FBE00F8DE35 /* coin.rti in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61F8B560159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m in Sources */,
+				61F8B578159C0FE100F8DE35 /* SURTISpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
