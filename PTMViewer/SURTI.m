@@ -76,10 +76,10 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
     
     NSAssert(_fileType == 3, @"Cannot parse non-HSH file type.");
     
-    _scale = (Float32 *)calloc(_terms, sizeof(Float32));
+    _scale = calloc(_terms, sizeof(Float32));
     [_binaryFileReader readFloat32:&_scale count:_terms];
     
-    _bias = (Float32 *)calloc(_terms, sizeof(Float32));
+    _bias = calloc(_terms, sizeof(Float32));
     [_binaryFileReader readFloat32:&_bias count:_terms];
 }
 

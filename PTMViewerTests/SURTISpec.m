@@ -2,14 +2,12 @@
 //  SUBinaryFileReaderSpec.m
 //  PTMViewer
 //
-//  Created by Jon Cooper on 6/27/12.
+//  Created by Jon Cooper on 6/0x27/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Kiwi/Kiwi.h>
 #import "SURTI.h"
-
-#define WITHIN_EPSILON(x, y, e) (e > (abs(x - y))
 
 SPEC_BEGIN(SURTISpec)
 
@@ -59,11 +57,31 @@ describe(@"header parsing", ^{
 });
 
 describe(@"coefficient reading", ^{
-    it(@"reads the correct number of coefficients", ^{
-        
+    beforeEach(^{
+        [rti parse];
     });
     it(@"reads the coefficients in the correct order", ^{
         
+        // This is an RGB PTM, so the block is in format:
+        // (9 terms of R), (9 terms of G), (9 terms of B)
+        
+        UInt8 firstCoefficientBlock[27] = {
+            0x5C, 0x86, 0x94, 0x82, 0x94, 0x7B, 0x6C, 0x93, 0x79,
+            0x5F, 0x85, 0x8F, 0x83, 0x94, 0x7C, 0x6C, 0x93, 0x79,
+            0x67, 0x85, 0x8F, 0x83, 0x95, 0x7E, 0x6A, 0x90, 0x76
+        };
+        UInt8 lastCoefficientBlock[27] = {
+            0x4A, 0x8E, 0x88, 0x7A, 0x96, 0x81, 0x6A, 0x98, 0x7D, 
+            0x4B, 0x8E, 0x85, 0x7A, 0x95, 0x80, 0x6A, 0x99, 0x7C, 
+            0x55, 0x91, 0x85, 0x79, 0x96, 0x7D, 0x69, 0x99, 0x7B
+        };
+        int totalCoefficientBlocks = [rti width] * [rti height] * [rti bands] * [rti terms];
+        
+        UInt8 *coefficients = [rti coefficients];
+        for (int i = 0; i < 27; i++) {
+            [[theValue(coefficients[i] == firstCoefficientBlock[i]) should] beTrue];
+            [[theValue(coefficients[totalCoefficientBlocks - 27 + i] == lastCoefficientBlock[i]) should] beTrue];
+        }
     });
 });
 
