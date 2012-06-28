@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4955239900CE4C3B8BA65C32 /* libPods-PTMViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AAAEF45B3043F89B546619 /* libPods-PTMViewerTests.a */; };
 		613F1D30159BAAD00045627E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D2F159BAAD00045627E /* UIKit.framework */; };
 		613F1D32159BAAD00045627E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D31159BAAD00045627E /* Foundation.framework */; };
 		613F1D34159BAAD00045627E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D33159BAAD00045627E /* CoreGraphics.framework */; };
@@ -24,7 +25,14 @@
 		613F1D5A159BAAD10045627E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D2F159BAAD00045627E /* UIKit.framework */; };
 		613F1D5B159BAAD10045627E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D31159BAAD00045627E /* Foundation.framework */; };
 		613F1D63159BAAD10045627E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 613F1D61159BAAD10045627E /* InfoPlist.strings */; };
-		613F1D66159BAAD10045627E /* PTMViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D65159BAAD10045627E /* PTMViewerTests.m */; };
+		613F1D70159BAC020045627E /* PTM.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D6F159BAC020045627E /* PTM.fsh */; };
+		613F1D73159BACA10045627E /* PTM.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D72159BACA10045627E /* PTM.vsh */; };
+		613F1D75159BAD960045627E /* RTI.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D74159BAD960045627E /* RTI.vsh */; };
+		613F1D77159BAD9E0045627E /* RTI.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D76159BAD9E0045627E /* RTI.fsh */; };
+		613F1D7B159BB0800045627E /* SURTI.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D7A159BB0800045627E /* SURTI.m */; };
+		613F1D81159BB8100045627E /* SUBinaryFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F1D80159BB8100045627E /* SUBinaryFileReader.m */; };
+		61F8B560159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F8B55F159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m */; };
+		61F8B566159BFEE100F8DE35 /* fixture.dat in Resources */ = {isa = PBXBuildFile; fileRef = 61F8B564159BFEE100F8DE35 /* fixture.dat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,30 +46,41 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35AAAEF45B3043F89B546619 /* libPods-PTMViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PTMViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		613F1D2B159BAAD00045627E /* PTMViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PTMViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		613F1D2F159BAAD00045627E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		613F1D31159BAAD00045627E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		613F1D2F159BAAD00045627E /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		613F1D31159BAAD00045627E /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		613F1D33159BAAD00045627E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		613F1D35159BAAD00045627E /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		613F1D37159BAAD00045627E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		613F1D3B159BAAD00045627E /* PTMViewer-Info.plist */ = {isa = PBXFileReference; path = "PTMViewer-Info.plist"; sourceTree = "<group>"; };
+		613F1D3B159BAAD00045627E /* PTMViewer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PTMViewer-Info.plist"; sourceTree = "<group>"; };
 		613F1D3D159BAAD00045627E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		613F1D3F159BAAD00045627E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		613F1D41159BAAD00045627E /* PTMViewer-Prefix.pch */ = {isa = PBXFileReference; path = "PTMViewer-Prefix.pch"; sourceTree = "<group>"; };
-		613F1D42159BAAD00045627E /* SUAppDelegate.h */ = {isa = PBXFileReference; path = SUAppDelegate.h; sourceTree = "<group>"; };
+		613F1D41159BAAD00045627E /* PTMViewer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PTMViewer-Prefix.pch"; sourceTree = "<group>"; };
+		613F1D42159BAAD00045627E /* SUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUAppDelegate.h; sourceTree = "<group>"; };
 		613F1D43159BAAD00045627E /* SUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUAppDelegate.m; sourceTree = "<group>"; };
 		613F1D45159BAAD00045627E /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
 		613F1D47159BAAD00045627E /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
-		613F1D49159BAAD00045627E /* SUViewController.h */ = {isa = PBXFileReference; path = SUViewController.h; sourceTree = "<group>"; };
+		613F1D49159BAAD00045627E /* SUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUViewController.h; sourceTree = "<group>"; };
 		613F1D4A159BAAD00045627E /* SUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUViewController.m; sourceTree = "<group>"; };
 		613F1D4D159BAAD00045627E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SUViewController_iPhone.xib; sourceTree = "<group>"; };
 		613F1D50159BAAD00045627E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SUViewController_iPad.xib; sourceTree = "<group>"; };
 		613F1D57159BAAD10045627E /* PTMViewerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PTMViewerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		613F1D58159BAAD10045627E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		613F1D60159BAAD10045627E /* PTMViewerTests-Info.plist */ = {isa = PBXFileReference; path = "PTMViewerTests-Info.plist"; sourceTree = "<group>"; };
+		613F1D58159BAAD10045627E /* SenTestingKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		613F1D60159BAAD10045627E /* PTMViewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PTMViewerTests-Info.plist"; sourceTree = "<group>"; };
 		613F1D62159BAAD10045627E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		613F1D64159BAAD10045627E /* PTMViewerTests.h */ = {isa = PBXFileReference; path = PTMViewerTests.h; sourceTree = "<group>"; };
-		613F1D65159BAAD10045627E /* PTMViewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTMViewerTests.m; sourceTree = "<group>"; };
+		613F1D6F159BAC020045627E /* PTM.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PTM.fsh; path = Shaders/PTM.fsh; sourceTree = "<group>"; };
+		613F1D72159BACA10045627E /* PTM.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = PTM.vsh; path = Shaders/PTM.vsh; sourceTree = "<group>"; };
+		613F1D74159BAD960045627E /* RTI.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = RTI.vsh; path = Shaders/RTI.vsh; sourceTree = "<group>"; };
+		613F1D76159BAD9E0045627E /* RTI.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RTI.fsh; sourceTree = "<group>"; };
+		613F1D79159BB0800045627E /* SURTI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SURTI.h; sourceTree = "<group>"; };
+		613F1D7A159BB0800045627E /* SURTI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SURTI.m; sourceTree = "<group>"; };
+		613F1D7F159BB8100045627E /* SUBinaryFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUBinaryFileReader.h; sourceTree = "<group>"; };
+		613F1D80159BB8100045627E /* SUBinaryFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUBinaryFileReader.m; sourceTree = "<group>"; };
+		61F8B55F159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUBinaryFileReaderSpec.m; sourceTree = "<group>"; };
+		61F8B563159BFEE100F8DE35 /* fixture_gen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fixture_gen.c; sourceTree = "<group>"; };
+		61F8B564159BFEE100F8DE35 /* fixture.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = fixture.dat; sourceTree = "<group>"; };
+		9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PTMViewerTests.xcconfig"; path = "Pods/Pods-PTMViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +103,7 @@
 				613F1D59159BAAD10045627E /* SenTestingKit.framework in Frameworks */,
 				613F1D5A159BAAD10045627E /* UIKit.framework in Frameworks */,
 				613F1D5B159BAAD10045627E /* Foundation.framework in Frameworks */,
+				4955239900CE4C3B8BA65C32 /* libPods-PTMViewerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +117,7 @@
 				613F1D5E159BAAD10045627E /* PTMViewerTests */,
 				613F1D2E159BAAD00045627E /* Frameworks */,
 				613F1D2C159BAAD00045627E /* Products */,
+				9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +139,7 @@
 				613F1D35159BAAD00045627E /* GLKit.framework */,
 				613F1D37159BAAD00045627E /* OpenGLES.framework */,
 				613F1D58159BAAD10045627E /* SenTestingKit.framework */,
+				35AAAEF45B3043F89B546619 /* libPods-PTMViewerTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,15 +147,18 @@
 		613F1D39159BAAD00045627E /* PTMViewer */ = {
 			isa = PBXGroup;
 			children = (
+				613F1D71159BAC1D0045627E /* Shaders */,
 				613F1D42159BAAD00045627E /* SUAppDelegate.h */,
 				613F1D43159BAAD00045627E /* SUAppDelegate.m */,
-				613F1D45159BAAD00045627E /* Shader.fsh */,
-				613F1D47159BAAD00045627E /* Shader.vsh */,
 				613F1D49159BAAD00045627E /* SUViewController.h */,
 				613F1D4A159BAAD00045627E /* SUViewController.m */,
 				613F1D4C159BAAD00045627E /* SUViewController_iPhone.xib */,
 				613F1D4F159BAAD00045627E /* SUViewController_iPad.xib */,
 				613F1D3A159BAAD00045627E /* Supporting Files */,
+				613F1D79159BB0800045627E /* SURTI.h */,
+				613F1D7A159BB0800045627E /* SURTI.m */,
+				613F1D7F159BB8100045627E /* SUBinaryFileReader.h */,
+				613F1D80159BB8100045627E /* SUBinaryFileReader.m */,
 			);
 			path = PTMViewer;
 			sourceTree = "<group>";
@@ -152,9 +177,9 @@
 		613F1D5E159BAAD10045627E /* PTMViewerTests */ = {
 			isa = PBXGroup;
 			children = (
-				613F1D64159BAAD10045627E /* PTMViewerTests.h */,
-				613F1D65159BAAD10045627E /* PTMViewerTests.m */,
+				61F8B562159BFB1200F8DE35 /* Fixtures */,
 				613F1D5F159BAAD10045627E /* Supporting Files */,
+				61F8B55F159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m */,
 			);
 			path = PTMViewerTests;
 			sourceTree = "<group>";
@@ -166,6 +191,28 @@
 				613F1D61159BAAD10045627E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		613F1D71159BAC1D0045627E /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				613F1D45159BAAD00045627E /* Shader.fsh */,
+				613F1D47159BAAD00045627E /* Shader.vsh */,
+				613F1D6F159BAC020045627E /* PTM.fsh */,
+				613F1D72159BACA10045627E /* PTM.vsh */,
+				613F1D74159BAD960045627E /* RTI.vsh */,
+				613F1D76159BAD9E0045627E /* RTI.fsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
+		61F8B562159BFB1200F8DE35 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				61F8B563159BFEE100F8DE35 /* fixture_gen.c */,
+				61F8B564159BFEE100F8DE35 /* fixture.dat */,
+			);
+			name = Fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +243,7 @@
 				613F1D53159BAAD10045627E /* Frameworks */,
 				613F1D54159BAAD10045627E /* Resources */,
 				613F1D55159BAAD10045627E /* ShellScript */,
+				2DD8E97CA3D84067836C6F9A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,12 +300,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				613F1D63159BAAD10045627E /* InfoPlist.strings in Resources */,
+				61F8B566159BFEE100F8DE35 /* fixture.dat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2DD8E97CA3D84067836C6F9A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-PTMViewerTests-resources.sh\"\n";
+		};
 		613F1D55159BAAD10045627E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +344,12 @@
 				613F1D40159BAAD00045627E /* main.m in Sources */,
 				613F1D44159BAAD00045627E /* SUAppDelegate.m in Sources */,
 				613F1D4B159BAAD00045627E /* SUViewController.m in Sources */,
+				613F1D70159BAC020045627E /* PTM.fsh in Sources */,
+				613F1D73159BACA10045627E /* PTM.vsh in Sources */,
+				613F1D75159BAD960045627E /* RTI.vsh in Sources */,
+				613F1D77159BAD9E0045627E /* RTI.fsh in Sources */,
+				613F1D7B159BB0800045627E /* SURTI.m in Sources */,
+				613F1D81159BB8100045627E /* SUBinaryFileReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				613F1D66159BAAD10045627E /* PTMViewerTests.m in Sources */,
+				61F8B560159BD65D00F8DE35 /* SUBinaryFileReaderSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +462,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "PTMViewer/PTMViewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -405,12 +475,14 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "PTMViewer/PTMViewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		613F1D6D159BAAD10045627E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PTMViewer.app/PTMViewer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -428,6 +500,7 @@
 		};
 		613F1D6E159BAAD10045627E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PTMViewer.app/PTMViewer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -462,6 +535,7 @@
 				613F1D6B159BAAD10045627E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		613F1D6C159BAAD10045627E /* Build configuration list for PBXNativeTarget "PTMViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +544,7 @@
 				613F1D6E159BAAD10045627E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
