@@ -121,6 +121,24 @@ describe(@"with a fixture file", ^{
             free(floats);
         });
     });
+    describe(@"NSData support", ^{
+        pending(@"-readNSData:count", ^{
+            beforeEach(^{
+                [binaryFileReader readLine];
+                [binaryFileReader readLine];
+            });
+            it(@"returns an NSData", ^{
+                NSData *data;
+                [binaryFileReader readNSData:&data count:3];
+                
+                UInt8 expectation[3] = { 0x01, 0x02, 0xAB };
+                UInt8 bytes[3];
+                [data getBytes:&bytes];
+                
+                [[theValue(bytes == expectation) should] beTrue];
+            });        
+        });
+    });
 });
 
 SPEC_END

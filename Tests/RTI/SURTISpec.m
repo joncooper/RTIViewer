@@ -77,7 +77,7 @@ describe(@"coefficient reading", ^{
         };
         int totalCoefficientBlocks = [rti width] * [rti height] * [rti bands] * [rti terms];
         
-        UInt8 *coefficients = [rti coefficients];
+        UInt8 *coefficients = (UInt8 *)[[rti coefficients] bytes];
         for (int i = 0; i < 27; i++) {
             [[theValue(coefficients[i] == firstCoefficientBlock[i]) should] beTrue];
             [[theValue(coefficients[totalCoefficientBlocks - 27 + i] == lastCoefficientBlock[i]) should] beTrue];

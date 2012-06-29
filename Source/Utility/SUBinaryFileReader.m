@@ -103,4 +103,9 @@
     return byte;
 }
 
+- (void)readNSData:(NSData **)data count:(NSUInteger)count {
+    *data = [_fileData subdataWithRange:NSMakeRange(_currentPosition, count)];
+    _currentPosition += count;
+}
+
 @end

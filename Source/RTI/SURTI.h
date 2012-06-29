@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import "JLGLProgram.h"
+
+struct SUSphericalCoordinate {
+    double theta;
+    double phi;
+};
+typedef struct SUSphericalCoordinate SUSphericalCoordinate;
+
 @interface SURTI : NSObject
 
 @property (readonly, nonatomic, assign) NSUInteger fileType;
@@ -21,13 +29,18 @@
 
 @property (readonly, nonatomic, assign) Float32 *scale;
 @property (readonly, nonatomic, assign) Float32 *bias;
-@property (readonly, nonatomic, assign) UInt8 *coefficients;
+@property (readonly, nonatomic, strong) NSData *coefficients;
 
+@property (readonly, nonatomic, assign) GLuint *textures;
 @property (readonly, nonatomic, assign) Float32 *weights;
+
+@property (readonly, nonatomic, strong) JLGLProgram *shaderProgram;
 
 - (id)initWithURL:(NSURL *)url;
 
 - (void)parseHeaders;
 - (void)parse;
+
+- (void)computeWeights:(SUSphericalCoordinate)lightLocation;
 
 @end

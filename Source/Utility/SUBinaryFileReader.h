@@ -25,5 +25,6 @@
 - (UInt8)readUInt8;
 
 - (void)readFloat32:(Float32 **)array count:(NSUInteger)count;
+- (void)readNSData:(NSData **)data count:(NSUInteger)count;
 
 @end

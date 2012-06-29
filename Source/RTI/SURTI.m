@@ -9,23 +9,14 @@
 #import "SURTI.h"
 #import "SUBinaryFileReader.h"
 #include <stdlib.h>
-
-struct SUSphericalCoordinate {
-    double theta;
-    double phi;
-};
-typedef struct SUSphericalCoordinate SUSphericalCoordinate;
     
-// Returns the index of an element in the coefficient array
-// h - y position of the current pixel
-// w - x position of the current pixel
-// b - the current color channel
-// o - the current term (keep in mind there are order*order terms)
+#define GET_TEXTURE_INDEX(y, x, b) (y * (_width * _height * _bands) + x * (_bands) + b)
 
 #define GET_INDEX(h, w, b, o) (h * (_width * _bands * _order * _order) + w * (_bands * _order * _order) + b * (_order * _order) + o) 
 
 @implementation SURTI {
     SUBinaryFileReader *_binaryFileReader;
+    BOOL               _hasTexturesBound;
 }
 
 @synthesize fileType = _fileType;
@@ -41,12 +32,17 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
 @synthesize bias = _bias;
 @synthesize coefficients = _coefficients;
 
+@synthesize textures = _textures;
 @synthesize weights = _weights;
+
+@synthesize shaderProgram = _shaderProgram;
 
 - (id)initWithURL:(NSURL *)url {
     self = [super init];
     if (self) {
         _binaryFileReader = [[SUBinaryFileReader alloc] initWithURL:url]; 
+        _hasTexturesBound = NO;
+        _shaderProgram = [[JLGLProgram alloc] initWithVertexShaderFilename:@"RTI" fragmentShaderFilename:@"RTI"];
     }
     return self;
 }
@@ -75,6 +71,8 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
     NSLog(@"Element Size: %d", _elementSize);
     
     NSAssert(_fileType == 3, @"Cannot parse non-HSH file type.");
+    NSAssert(_terms <= 9, @"Shader implementation limited to 3rd-order HSH at this time."); 
+    NSAssert(_bands == 3, @"RGB only at the moment.");
     
     _scale = calloc(_terms, sizeof(Float32));
     [_binaryFileReader readFloat32:&_scale count:_terms];
@@ -83,25 +81,79 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
     [_binaryFileReader readFloat32:&_bias count:_terms];
 }
 
-- (void)parse {        
-    [self parseHeaders];
+//
+// Copy coordinates to GPU using glTexImage2D, then nuke them from userspace RAM.
+//
+- (void)bindTextures {
+    NSAssert(_hasTexturesBound == NO, @"Textures already bound, unbind first.");
     
-    NSUInteger coefficentCount = _width * _height * _bands * _terms;
-    _coefficients = malloc(coefficentCount * sizeof(UInt8));
+    _textures = calloc(_terms, sizeof(GLuint));
+                       
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glGenTextures(_terms, _textures);
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     
-    for (int y = 0; y < _height; y++) {
-        for (int x = 0; x < _width; x++) {
-            for (int b = 0; b < _bands; b++) {
-                for (int t = 0; t < _terms; t++) {
-                    _coefficients[GET_INDEX(y, x, b, t)] = [_binaryFileReader readUInt8];
+    const UInt8 *coefficientBytes = (const UInt8 *)[_coefficients bytes];
+    int textureSize = _width * _height * _bands;
+    UInt8 *textureData;
+    
+    for (int t = 0; t < _terms; t++) {
+        textureData = calloc(textureSize, sizeof(UInt8));
+        for (int y = 0; y < _height; y++) {
+            for (int x = 0; x < _width; x++) {
+                for (int b = 0; b < _bands; b++) {
+                    textureData[GET_TEXTURE_INDEX(y, x, b)] = coefficientBytes[GET_INDEX(y, x, b, t)];
                 }
             }
         }
+        glBindTexture(GL_TEXTURE_2D, _textures[t]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
+        
+        free(textureData);
     }
 }
 
+- (void)unbindTextures {
+    if (_hasTexturesBound)
+        glDeleteTextures(_terms, _textures);
+    
+    free(_textures);
+    
+    _hasTexturesBound = NO;
+}
+
+//
+// Bind the shaders
+//
+- (void)bindShaders {
+    [self.shaderProgram link];
+    [self.shaderProgram use];
+}
+
+//
+// Update uniforms
+//
+- (void)updateUniforms {
+    
+}
+
+- (void)parse {        
+    [self parseHeaders];
+    
+    int coefficentCount = _width * _height * _bands * _terms;
+    NSData *coefficients;
+    
+    [_binaryFileReader readNSData:&coefficients count:coefficentCount];
+    _coefficients = coefficients;
+}
+
 - (void)computeWeights:(SUSphericalCoordinate)lightLocation {
-    _weights = malloc(16 * sizeof(Float32));
+    _weights = calloc(16, sizeof(Float32));
     
     double theta = lightLocation.theta;
     double phi = lightLocation.phi;
@@ -128,9 +180,10 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
 }
  
 - (void)dealloc {
+    [self unbindTextures];
+    
     free(_scale);
     free(_bias);
-    free(_coefficients);
     free(_weights);
 }
 

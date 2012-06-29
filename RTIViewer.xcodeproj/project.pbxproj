@@ -41,6 +41,7 @@
 		613F1D59159BAAD10045627E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D58159BAAD10045627E /* SenTestingKit.framework */; };
 		613F1D5A159BAAD10045627E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D2F159BAAD00045627E /* UIKit.framework */; };
 		613F1D5B159BAAD10045627E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F1D31159BAAD00045627E /* Foundation.framework */; };
+		619F518A159DF5C4000E3A3F /* JLGLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 619F5189159DF5C4000E3A3F /* JLGLProgram.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		613F1D37159BAAD00045627E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		613F1D57159BAAD10045627E /* RTIViewerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RTIViewerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		613F1D58159BAAD10045627E /* SenTestingKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		619F5188159DF5C4000E3A3F /* JLGLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLGLProgram.h; sourceTree = "<group>"; };
+		619F5189159DF5C4000E3A3F /* JLGLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLGLProgram.m; sourceTree = "<group>"; };
 		9B712F86F405413D9B383238 /* Pods-PTMViewerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PTMViewerTests.xcconfig"; path = "Pods/Pods-PTMViewerTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -199,6 +202,8 @@
 			children = (
 				610C2A07159CB42C007EC070 /* SUBinaryFileReader.h */,
 				610C2A08159CB42C007EC070 /* SUBinaryFileReader.m */,
+				619F5188159DF5C4000E3A3F /* JLGLProgram.h */,
+				619F5189159DF5C4000E3A3F /* JLGLProgram.m */,
 			);
 			name = Utility;
 			path = Source/Utility;
@@ -418,6 +423,7 @@
 				610C2A14159CB42C007EC070 /* main.m in Sources */,
 				610C2A16159CB42C007EC070 /* SUViewController.m in Sources */,
 				610C2A17159CB42C007EC070 /* SUBinaryFileReader.m in Sources */,
+				619F518A159DF5C4000E3A3F /* JLGLProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
