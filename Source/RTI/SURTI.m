@@ -14,9 +14,18 @@
 
 #define GET_INDEX(h, w, b, o) (h * (_width * _bands * _order * _order) + w * (_bands * _order * _order) + b * (_order * _order) + o) 
 
+struct RTIUniforms {
+    GLint scale;
+    GLint bias;
+    GLint weights;
+    GLint rtiData[9];
+};
+typedef struct RTIUniforms *RTIUniforms;
+
 @implementation SURTI {
     SUBinaryFileReader *_binaryFileReader;
     BOOL               _hasTexturesBound;
+    RTIUniforms        _uniforms;
 }
 
 @synthesize fileType = _fileType;
@@ -43,6 +52,7 @@
         _binaryFileReader = [[SUBinaryFileReader alloc] initWithURL:url]; 
         _hasTexturesBound = NO;
         _shaderProgram = [[JLGLProgram alloc] initWithVertexShaderFilename:@"RTI" fragmentShaderFilename:@"RTI"];
+        _uniforms = calloc(1, sizeof(struct RTIUniforms));
     }
     return self;
 }
@@ -85,6 +95,7 @@
 // Copy coordinates to GPU using glTexImage2D, then nuke them from userspace RAM.
 //
 - (void)bindTextures {
+    NSAssert(_terms == 9, @"At the moment we only support 3rd order RTI files.");
     NSAssert(_hasTexturesBound == NO, @"Textures already bound, unbind first.");
     
     _textures = calloc(_terms, sizeof(GLuint));
@@ -107,12 +118,16 @@
                 }
             }
         }
+        glActiveTexture(GL_TEXTURE0 + t);
         glBindTexture(GL_TEXTURE_2D, _textures[t]);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
+        
+        _uniforms->rtiData[t] = [self.shaderProgram uniformIndex:[NSString stringWithFormat:@"rtiData%i", t]];
+        glUniform1i(_uniforms->rtiData[t], GL_TEXTURE0 + t);
         
         free(textureData);
     }
@@ -133,6 +148,13 @@
 - (void)bindShaders {
     [self.shaderProgram link];
     [self.shaderProgram use];
+    
+    _uniforms->scale = [self.shaderProgram uniformIndex:@"scale"];
+    _uniforms->bias = [self.shaderProgram uniformIndex:@"bias"];
+    _uniforms->weights = [self.shaderProgram uniformIndex:@"weights"];
+    
+//    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
+
 }
 
 //
@@ -185,6 +207,7 @@
     free(_scale);
     free(_bias);
     free(_weights);
+    free(_uniforms);
 }
 
 @end
