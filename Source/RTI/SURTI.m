@@ -10,7 +10,7 @@
 #import "SUBinaryFileReader.h"
 #include <stdlib.h>
     
-#define GET_TEXTURE_INDEX(y, x, b) (y * (_width * _bands) + x * (_bands) + b)
+#define GET_TEXTURE_INDEX(y, x, b) ((y * (_width * _bands)) + (x * _bands) + b)
 
 #define GET_INDEX(h, w, b, o) (h * (_width * _bands * _order * _order) + w * (_bands * _order * _order) + b * (_order * _order) + o) 
 
@@ -141,7 +141,7 @@ typedef struct RTIUniforms *RTIUniforms;
     glUniform1fv(_uniforms->bias, 9, _bias);
     
     SUSphericalCoordinate overhead = calloc(1, sizeof(struct SUSphericalCoordinate));
-    overhead->theta = 0.0f;
+    overhead->theta = 0.35f;
     overhead->phi = M_PI;
     [self computeWeights:overhead];
     glUniform1fv(_uniforms->weights, 9, _weights);
@@ -160,7 +160,7 @@ typedef struct RTIUniforms *RTIUniforms;
     glUniformMatrix4fv(_uniforms->modelViewProjectionMatrix, 1, 0, mvpMatrix.m);
     
     for (int i = 0; i < 9; i++) {
-        glUniform1i(_uniforms->rtiData[i], GL_TEXTURE0 + i);
+        glUniform1i(_uniforms->rtiData[i], i);
     }
 }
 
@@ -196,7 +196,7 @@ typedef struct RTIUniforms *RTIUniforms;
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+        
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
                 
         free(textureData);
