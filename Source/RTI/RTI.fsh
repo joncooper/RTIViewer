@@ -8,23 +8,29 @@ The fragment shader (GLSL) calculates each pixel's intensity by:
   
 */
 
-varying lowp vec2 pos;
+varying highp vec2 pos;
 
 uniform highp float scale[9];
 uniform highp float bias[9];
 uniform highp float weights[9];
 
-uniform sampler2D rtiData0;
-uniform sampler2D rtiData1;
-uniform sampler2D rtiData2;
-uniform sampler2D rtiData3;
-uniform sampler2D rtiData4;
-uniform sampler2D rtiData5;
-uniform sampler2D rtiData6;
-uniform sampler2D rtiData7;
-uniform sampler2D rtiData8;
+uniform lowp sampler2D rtiData0;
+uniform lowp sampler2D rtiData1;
+uniform lowp sampler2D rtiData2;
+uniform lowp sampler2D rtiData3;
+uniform lowp sampler2D rtiData4;
+uniform lowp sampler2D rtiData5;
+uniform lowp sampler2D rtiData6;
+uniform lowp sampler2D rtiData7;
+uniform lowp sampler2D rtiData8;
 
 void main() {
+    gl_FragColor = clamp(texture2D(rtiData0, vec2(0.10, 0.15)), 0.0, 1.0);
+    
+    //gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
+    //gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
+    
+    /*
 
   gl_FragColor  = (texture2D(rtiData0, pos) * scale[0] + bias[0]) * weights[0];
   gl_FragColor += (texture2D(rtiData1, pos) * scale[1] + bias[1]) * weights[1];
@@ -36,7 +42,5 @@ void main() {
   gl_FragColor += (texture2D(rtiData7, pos) * scale[7] + bias[7]) * weights[7];
   gl_FragColor += (texture2D(rtiData8, pos) * scale[8] + bias[8]) * weights[8];
   gl_FragColor.a = 1.0;
-
-    gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
-
+*/
 }

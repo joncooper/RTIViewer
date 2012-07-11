@@ -146,10 +146,18 @@ typedef struct RTIUniforms *RTIUniforms;
     [self computeWeights:overhead];
     glUniform1fv(_uniforms->weights, 9, _weights);
     
+    /*
     GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(-1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 100.0f);
     GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 0.5f);
     GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, baseModelViewMatrix);
     glUniformMatrix4fv(_uniforms->modelViewProjectionMatrix, 1, 0, modelViewProjectionMatrix.m);
+    */
+    
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0.0f, 640.0f, 0.0f, 960.0f, -1.0f, 1.0f);
+    GLKMatrix4 modelViewMatrix = GLKMatrix4Scale(GLKMatrix4Identity, 640.0f, 640.0f, 1.0f);
+    GLKMatrix4 mvpMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    
+    glUniformMatrix4fv(_uniforms->modelViewProjectionMatrix, 1, 0, mvpMatrix.m);
     
     for (int i = 0; i < 9; i++) {
         glUniform1i(_uniforms->rtiData[i], GL_TEXTURE0 + i);
@@ -165,9 +173,8 @@ typedef struct RTIUniforms *RTIUniforms;
     
     _textures = calloc(_terms, sizeof(GLuint));
                        
-    glEnable(GL_TEXTURE_2D);
-    glEnable(GL_BLEND);
     glGenTextures(_terms, _textures);
+    glPixelStorei(GL_PACK_ALIGNMENT, 1);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     
     const UInt8 *coefficientBytes = (const UInt8 *)[_coefficients bytes];
@@ -189,10 +196,9 @@ typedef struct RTIUniforms *RTIUniforms;
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
-        
-        glUniform1i(_uniforms->rtiData[t], GL_TEXTURE0 + t);
-        
+                
         free(textureData);
     }
 }

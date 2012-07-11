@@ -1,7 +1,9 @@
+precision highp float;
+
 attribute vec4 position;
 attribute vec4 uv;
 
-// uniform vec4 modelViewProjectionMatrix;
+uniform mat4 modelViewProjectionMatrix;
 
 varying vec2 pos;
 

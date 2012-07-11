@@ -25,24 +25,16 @@ GLfloat quadTexCoord[8] = {
 };
 
 GLfloat quadVertices[8] = {
-    0.0f,   0.0f,    // Bottom left
-    768.0f, 0.0f,    // Bottom right
-    0.0f,   1024.0f, // Top left
-    768.0f, 1024.0f  // Top right 
-};
-
-GLfloat quadColors[16] = {
-    1.0f, 0.0f, 0.0f, 1.0f,
-    0.0f, 1.0f, 0.0f, 1.0f,
-    0.0f, 0.0f, 1.0f, 1.0f,
-    1.0f, 1.0f, 0.0f, 1.0f
+    -1.0f, -1.0f, // Bottom left
+    1.0f,  -1.0f, // Bottom right
+    -1.0f, 1.0f, // Top left
+    1.0f, 1.0f  // Top right 
 };
 
 @interface SUViewController () {
     SURTI *_rti;
     GLuint _positionAttribute;
     GLuint _texCoordAttribute;
-    GLKBaseEffect *_effect;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -70,7 +62,7 @@ GLfloat quadColors[16] = {
     view.context = self.context;
     
     [self setupGL];
-//    [self setupRTI];
+    [self setupRTI];
 }
 
 - (void)setupRTI
@@ -85,15 +77,17 @@ GLfloat quadColors[16] = {
     
     _positionAttribute = [_rti.shaderProgram attributeIndex:@"position"];
     _texCoordAttribute = [_rti.shaderProgram attributeIndex:@"uv"];
+
     glEnableVertexAttribArray(_positionAttribute);
     glEnableVertexAttribArray(_texCoordAttribute);
+    
+    glVertexAttribPointer(_positionAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadVertices);
+    glVertexAttribPointer(_texCoordAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadTexCoord);    
 }
 
 - (void)setupGL
 {
     [EAGLContext setCurrentContext:self.context];
-    _effect = [[GLKBaseEffect alloc] init];
-    _effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 768, 0, 1024, -1024, 1024);
 }
 
 - (void)tearDownGL
@@ -113,19 +107,7 @@ GLfloat quadColors[16] = {
     // Red == Bad
     glClearColor(0.8f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    
-    [_effect prepareToDraw];
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, 0, quadVertices);
-    
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 0, quadColors);    
-    
-//    
-//    glVertexAttribPointer(_positionAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadVertices);
-//    glVertexAttribPointer(_texCoordAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadTexCoord);
- 
+    [[_rti shaderProgram] use];
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);  
 }
 
