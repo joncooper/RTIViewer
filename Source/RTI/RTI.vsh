@@ -1,7 +1,12 @@
+attribute vec4 position;
+attribute vec4 uv;
+
+// uniform vec4 modelViewProjectionMatrix;
+
 varying vec2 pos;
 
 void main()
 {
-    gl_Position = gl_ModelViewProjectionMatrix * vec4(position, 1.0);
-    pos = uv;
+    gl_Position = position;
+    pos = uv.xy;
 }

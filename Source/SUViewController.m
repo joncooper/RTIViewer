@@ -9,23 +9,42 @@
 #import "SUViewController.h"
 #import "SURTI.h"
 
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+//GLfloat quadVertices[8] = {
+//    -1.0f, -1.0f, // Bottom left
+//    1.0f, -1.0f, // Bottom right
+//    -1.0f,  1.0f, // Top left
+//    1.0f,  1.0f  // Top right 
+//};
+//
 
-// positionX, positionY, positionZ, texCoordU, texCoordV
+GLfloat quadTexCoord[8] = {
+    0.0f, 0.0f, // Bottom left
+    1.0f, 0.0f, // Bottom right
+    0.0f, 1.0f, // Top left
+    1.0f, 1.0f  // Top right 
+};
 
-GLfloat quadVertexData[] = {
-    -1.0f,  1.0f, 0.0f, 0.0f, 1.0f, // Top left
-     1.0f,  1.0f, 0.0f, 1.0f, 1.0f, // Top right
-     1.0f, -1.0f, 0.0f, 1.0f, 0.0f, // Bottom right
-    -1.0f, -1.0f, 0.0f, 0.0f, 0.0f  // Bottom left
+GLfloat quadVertices[8] = {
+    0.0f,   0.0f,    // Bottom left
+    768.0f, 0.0f,    // Bottom right
+    0.0f,   1024.0f, // Top left
+    768.0f, 1024.0f  // Top right 
+};
+
+GLfloat quadColors[16] = {
+    1.0f, 0.0f, 0.0f, 1.0f,
+    0.0f, 1.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, 1.0f, 1.0f,
+    1.0f, 1.0f, 0.0f, 1.0f
 };
 
 @interface SUViewController () {
-    GLKMatrix4 _modelViewProjectionMatrix;
     SURTI *_rti;
-    GLuint _vertexArray;
-    GLuint _vertexBuffer;
+    GLuint _positionAttribute;
+    GLuint _texCoordAttribute;
+    GLKBaseEffect *_effect;
 }
+
 @property (strong, nonatomic) EAGLContext *context;
 
 - (void)setupGL;
@@ -49,10 +68,9 @@ GLfloat quadVertexData[] = {
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
-    [self setupRTI];
     [self setupGL];
+//    [self setupRTI];
 }
 
 - (void)setupRTI
@@ -62,45 +80,32 @@ GLfloat quadVertexData[] = {
     
     _rti = [[SURTI alloc] initWithURL:url];
     [_rti parse];
+    [_rti setupGL];
+    [[_rti shaderProgram] use];
+    
+    _positionAttribute = [_rti.shaderProgram attributeIndex:@"position"];
+    _texCoordAttribute = [_rti.shaderProgram attributeIndex:@"uv"];
+    glEnableVertexAttribArray(_positionAttribute);
+    glEnableVertexAttribArray(_texCoordAttribute);
 }
 
 - (void)setupGL
 {
     [EAGLContext setCurrentContext:self.context];
-        
-    glEnable(GL_DEPTH_TEST);
-    
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
-    
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertexData), quadVertexData, GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, 16, BUFFER_OFFSET(0));
-    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 16, BUFFER_OFFSET(8));
-    
-    glBindVertexArrayOES(0);
-    
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(-1.0f, 1.0f, 1.0f, -1.0f, 0.1f, 100.0f);
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 100.0f);
-    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, baseModelViewMatrix);
+    _effect = [[GLKBaseEffect alloc] init];
+    _effect.transform.projectionMatrix = GLKMatrix4MakeOrtho(0, 768, 0, 1024, -1024, 1024);
 }
 
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
-    
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteVertexArraysOES(1, &_vertexArray);
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update
 {
+
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -109,14 +114,19 @@ GLfloat quadVertexData[] = {
     glClearColor(0.8f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glBindVertexArrayOES(_vertexArray);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    [_effect prepareToDraw];
     
-    // Push uniforms to GPU
-//    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-//    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
+    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, 0, quadVertices);
     
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glEnableVertexAttribArray(GLKVertexAttribColor);
+    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 0, quadColors);    
+    
+//    
+//    glVertexAttribPointer(_positionAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadVertices);
+//    glVertexAttribPointer(_texCoordAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadTexCoord);
+ 
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);  
 }
 
 /*

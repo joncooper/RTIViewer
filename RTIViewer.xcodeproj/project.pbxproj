@@ -12,12 +12,12 @@
 		610C29E9159CB35F007EC070 /* Ban-Papyrus_1000.ptm in Resources */ = {isa = PBXBuildFile; fileRef = 610C29E6159CB35F007EC070 /* Ban-Papyrus_1000.ptm */; };
 		610C29EA159CB35F007EC070 /* coin.rti in Resources */ = {isa = PBXBuildFile; fileRef = 610C29E7159CB35F007EC070 /* coin.rti */; };
 		610C29EB159CB35F007EC070 /* coin.rti in Resources */ = {isa = PBXBuildFile; fileRef = 610C29E7159CB35F007EC070 /* coin.rti */; };
-		610C2A09159CB42C007EC070 /* PTM.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29EF159CB42C007EC070 /* PTM.fsh */; };
-		610C2A0A159CB42C007EC070 /* PTM.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F0159CB42C007EC070 /* PTM.vsh */; };
-		610C2A0B159CB42C007EC070 /* Shader.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F1159CB42C007EC070 /* Shader.fsh */; };
-		610C2A0C159CB42C007EC070 /* Shader.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F2159CB42C007EC070 /* Shader.vsh */; };
-		610C2A0D159CB42C007EC070 /* RTI.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F4159CB42C007EC070 /* RTI.fsh */; };
-		610C2A0E159CB42C007EC070 /* RTI.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F5159CB42C007EC070 /* RTI.vsh */; };
+		610C2A09159CB42C007EC070 /* PTM.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 610C29EF159CB42C007EC070 /* PTM.fsh */; };
+		610C2A0A159CB42C007EC070 /* PTM.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 610C29F0159CB42C007EC070 /* PTM.vsh */; };
+		610C2A0B159CB42C007EC070 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 610C29F1159CB42C007EC070 /* Shader.fsh */; };
+		610C2A0C159CB42C007EC070 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 610C29F2159CB42C007EC070 /* Shader.vsh */; };
+		610C2A0D159CB42C007EC070 /* RTI.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 610C29F4159CB42C007EC070 /* RTI.fsh */; };
+		610C2A0E159CB42C007EC070 /* RTI.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 610C29F5159CB42C007EC070 /* RTI.vsh */; };
 		610C2A0F159CB42C007EC070 /* SURTI.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F7159CB42C007EC070 /* SURTI.m */; };
 		610C2A10159CB42C007EC070 /* SUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 610C29F9159CB42C007EC070 /* SUAppDelegate.m */; };
 		610C2A11159CB42C007EC070 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 610C29FB159CB42C007EC070 /* InfoPlist.strings */; };
@@ -356,6 +356,12 @@
 			files = (
 				610C29E8159CB35F007EC070 /* Ban-Papyrus_1000.ptm in Resources */,
 				610C29EA159CB35F007EC070 /* coin.rti in Resources */,
+				610C2A09159CB42C007EC070 /* PTM.fsh in Resources */,
+				610C2A0A159CB42C007EC070 /* PTM.vsh in Resources */,
+				610C2A0B159CB42C007EC070 /* Shader.fsh in Resources */,
+				610C2A0C159CB42C007EC070 /* Shader.vsh in Resources */,
+				610C2A0D159CB42C007EC070 /* RTI.fsh in Resources */,
+				610C2A0E159CB42C007EC070 /* RTI.vsh in Resources */,
 				610C2A11159CB42C007EC070 /* InfoPlist.strings in Resources */,
 				610C2A12159CB42C007EC070 /* SUViewController_iPad.xib in Resources */,
 				610C2A13159CB42C007EC070 /* SUViewController_iPhone.xib in Resources */,
@@ -412,12 +418,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				610C2A09159CB42C007EC070 /* PTM.fsh in Sources */,
-				610C2A0A159CB42C007EC070 /* PTM.vsh in Sources */,
-				610C2A0B159CB42C007EC070 /* Shader.fsh in Sources */,
-				610C2A0C159CB42C007EC070 /* Shader.vsh in Sources */,
-				610C2A0D159CB42C007EC070 /* RTI.fsh in Sources */,
-				610C2A0E159CB42C007EC070 /* RTI.vsh in Sources */,
 				610C2A0F159CB42C007EC070 /* SURTI.m in Sources */,
 				610C2A10159CB42C007EC070 /* SUAppDelegate.m in Sources */,
 				610C2A14159CB42C007EC070 /* main.m in Sources */,

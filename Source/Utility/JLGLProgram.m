@@ -60,8 +60,10 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
                               ofType:@"fsh"];
         if (![self compileShader:&fragShader 
                             type:GL_FRAGMENT_SHADER 
-                            file:fragShaderPathname])
+                            file:fragShaderPathname]) {
             NSLog(@"Failed to compile fragment shader");
+            NSLog(@"Log: \n%@", [self fragmentShaderLog]);
+        }
         
         glAttachShader(program, vertShader);
         glAttachShader(program, fragShader);
@@ -80,6 +82,7 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
     (GLchar *)[[NSString stringWithContentsOfFile:file 
                                          encoding:NSUTF8StringEncoding 
                                             error:nil] UTF8String];
+
     if (!source)
     {
         NSLog(@"Failed to load vertex shader");
@@ -89,7 +92,7 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
     *shader = glCreateShader(type);
     glShaderSource(*shader, 1, &source, NULL);
     glCompileShader(*shader);
-    
+        
     glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
     return status == GL_TRUE;
 }
@@ -169,8 +172,8 @@ typedef void (*GLLogFunction) (GLuint program, GLsizei bufsize, GLsizei* length,
 - (NSString *)fragmentShaderLog
 {
     return [self logForOpenGLObject:fragShader 
-                       infoCallback:(GLInfoFunction)&glGetProgramiv 
-                            logFunc:(GLLogFunction)&glGetProgramInfoLog];
+                       infoCallback:(GLInfoFunction)&glGetShaderiv 
+                            logFunc:(GLLogFunction)&glGetShaderInfoLog];
 }
 - (NSString *)programLog
 {

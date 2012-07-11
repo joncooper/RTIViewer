@@ -10,7 +10,7 @@
 #import "SUBinaryFileReader.h"
 #include <stdlib.h>
     
-#define GET_TEXTURE_INDEX(y, x, b) (y * (_width * _height * _bands) + x * (_bands) + b)
+#define GET_TEXTURE_INDEX(y, x, b) (y * (_width * _bands) + x * (_bands) + b)
 
 #define GET_INDEX(h, w, b, o) (h * (_width * _bands * _order * _order) + w * (_bands * _order * _order) + b * (_order * _order) + o) 
 
@@ -18,6 +18,7 @@ struct RTIUniforms {
     GLint scale;
     GLint bias;
     GLint weights;
+    GLint modelViewProjectionMatrix;
     GLint rtiData[9];
 };
 typedef struct RTIUniforms *RTIUniforms;
@@ -57,6 +58,8 @@ typedef struct RTIUniforms *RTIUniforms;
     return self;
 }
 
+#pragma mark - Parsing
+
 - (void)parseHeaders {
     // Strip all header comment lines
     while ([[_binaryFileReader peekLine] characterAtIndex:0] == '#')
@@ -91,10 +94,72 @@ typedef struct RTIUniforms *RTIUniforms;
     [_binaryFileReader readFloat32:&_bias count:_terms];
 }
 
+- (void)parse {        
+    [self parseHeaders];
+    
+    int coefficentCount = _width * _height * _bands * _terms;
+    NSData *coefficients;
+    
+    [_binaryFileReader readNSData:&coefficients count:coefficentCount];
+    _coefficients = coefficients;
+}
+
+#pragma mark - GL
+
+//
+// Bind the shaders
+//
+- (void)setupGL {
+    
+    [self bindAttributes];
+    [self.shaderProgram link];
+    [self.shaderProgram use];
+    
+    [self bindUniforms];
+    [self uploadTextures];
+    [self setupUniforms];
+}
+
+- (void)bindAttributes {
+    [self.shaderProgram addAttribute:@"position"];
+    [self.shaderProgram addAttribute:@"uv"];
+}
+
+- (void)bindUniforms {
+    _uniforms->scale                     = [self.shaderProgram uniformIndex:@"scale"];
+    _uniforms->bias                      = [self.shaderProgram uniformIndex:@"bias"];
+    _uniforms->weights                   = [self.shaderProgram uniformIndex:@"weights"];
+    _uniforms->modelViewProjectionMatrix = [self.shaderProgram uniformIndex:@"modelViewProjectionMatrix"];
+    
+    for (int i = 0; i < 9; i++) {
+        _uniforms->rtiData[i] = [self.shaderProgram uniformIndex:[NSString stringWithFormat:@"rtiData%i", i]];
+    }
+}
+
+- (void)setupUniforms {
+    glUniform1fv(_uniforms->scale, 9, _scale);
+    glUniform1fv(_uniforms->bias, 9, _bias);
+    
+    SUSphericalCoordinate overhead = calloc(1, sizeof(struct SUSphericalCoordinate));
+    overhead->theta = 0.0f;
+    overhead->phi = M_PI;
+    [self computeWeights:overhead];
+    glUniform1fv(_uniforms->weights, 9, _weights);
+    
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(-1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 100.0f);
+    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 0.5f);
+    GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, baseModelViewMatrix);
+    glUniformMatrix4fv(_uniforms->modelViewProjectionMatrix, 1, 0, modelViewProjectionMatrix.m);
+    
+    for (int i = 0; i < 9; i++) {
+        glUniform1i(_uniforms->rtiData[i], GL_TEXTURE0 + i);
+    }
+}
+
 //
 // Copy coordinates to GPU using glTexImage2D, then nuke them from userspace RAM.
 //
-- (void)bindTextures {
+- (void)uploadTextures {
     NSAssert(_terms == 9, @"At the moment we only support 3rd order RTI files.");
     NSAssert(_hasTexturesBound == NO, @"Textures already bound, unbind first.");
     
@@ -120,13 +185,12 @@ typedef struct RTIUniforms *RTIUniforms;
         }
         glActiveTexture(GL_TEXTURE0 + t);
         glBindTexture(GL_TEXTURE_2D, _textures[t]);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
         
-        _uniforms->rtiData[t] = [self.shaderProgram uniformIndex:[NSString stringWithFormat:@"rtiData%i", t]];
         glUniform1i(_uniforms->rtiData[t], GL_TEXTURE0 + t);
         
         free(textureData);
@@ -142,43 +206,11 @@ typedef struct RTIUniforms *RTIUniforms;
     _hasTexturesBound = NO;
 }
 
-//
-// Bind the shaders
-//
-- (void)bindShaders {
-    [self.shaderProgram link];
-    [self.shaderProgram use];
-    
-    _uniforms->scale = [self.shaderProgram uniformIndex:@"scale"];
-    _uniforms->bias = [self.shaderProgram uniformIndex:@"bias"];
-    _uniforms->weights = [self.shaderProgram uniformIndex:@"weights"];
-    
-//    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-
-}
-
-//
-// Update uniforms
-//
-- (void)updateUniforms {
-    
-}
-
-- (void)parse {        
-    [self parseHeaders];
-    
-    int coefficentCount = _width * _height * _bands * _terms;
-    NSData *coefficients;
-    
-    [_binaryFileReader readNSData:&coefficients count:coefficentCount];
-    _coefficients = coefficients;
-}
-
 - (void)computeWeights:(SUSphericalCoordinate)lightLocation {
     _weights = calloc(16, sizeof(Float32));
     
-    double theta = lightLocation.theta;
-    double phi = lightLocation.phi;
+    double theta = lightLocation->theta;
+    double phi = lightLocation->phi;
     
     if (phi < 0)
         phi = phi + (2 * M_PI);

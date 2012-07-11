@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <GLKit/GLKit.h>
 #import "JLGLProgram.h"
 
 struct SUSphericalCoordinate {
     double theta;
     double phi;
 };
-typedef struct SUSphericalCoordinate SUSphericalCoordinate;
+typedef struct SUSphericalCoordinate *SUSphericalCoordinate;
 
 @interface SURTI : NSObject
 
@@ -40,6 +40,13 @@ typedef struct SUSphericalCoordinate SUSphericalCoordinate;
 
 - (void)parseHeaders;
 - (void)parse;
+ 
+- (void)setupGL;
+- (void)bindAttributes;
+- (void)bindUniforms;
+- (void)setupUniforms;
+- (void)uploadTextures;
+- (void)unbindTextures;
 
 - (void)computeWeights:(SUSphericalCoordinate)lightLocation;
 
