@@ -48,6 +48,7 @@ typedef struct SUSphericalCoordinate *SUSphericalCoordinate;
 - (void)uploadTextures;
 - (void)unbindTextures;
 
+- (void)updateWeights:(SUSphericalCoordinate)lightLocation;
 - (void)computeWeights:(SUSphericalCoordinate)lightLocation;
 
 @end

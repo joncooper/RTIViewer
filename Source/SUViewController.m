@@ -17,12 +17,22 @@
 //};
 //
 
+/*
 GLfloat quadTexCoord[8] = {
     0.0f, 0.0f, // Bottom left
     1.0f, 0.0f, // Bottom right
     0.0f, 1.0f, // Top left
     1.0f, 1.0f  // Top right 
 };
+*/
+
+GLfloat quadTexCoord[8] = {
+    0.0f, 1.0f, // Top left
+    1.0f, 1.0f, // Top right 
+    0.0f, 0.0f, // Bottom left
+    1.0f, 0.0f  // Bottom right
+};
+
 
 GLfloat quadVertices[8] = {
     -1.0f, -1.0f, // Bottom left
@@ -35,6 +45,8 @@ GLfloat quadVertices[8] = {
     SURTI *_rti;
     GLuint _positionAttribute;
     GLuint _texCoordAttribute;
+    
+    SUSphericalCoordinate _lightPosition;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -83,6 +95,10 @@ GLfloat quadVertices[8] = {
     
     glVertexAttribPointer(_positionAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadVertices);
     glVertexAttribPointer(_texCoordAttribute, 2, GL_FLOAT, GL_FALSE, 0, quadTexCoord);    
+    
+    _lightPosition = calloc(1, sizeof(struct SUSphericalCoordinate));
+    _lightPosition->theta = M_PI / 4.0f; // Rotation on zy plane
+    _lightPosition->phi = 0.0f;   // Rotation on xy plane
 }
 
 - (void)setupGL
@@ -99,7 +115,8 @@ GLfloat quadVertices[8] = {
 
 - (void)update
 {
-
+    _lightPosition->phi += (2.0f * M_PI) / (60.0f * 2.0f);
+    [_rti updateWeights:_lightPosition];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -107,8 +124,12 @@ GLfloat quadVertices[8] = {
     // Red == Bad
     glClearColor(0.8f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-    [[_rti shaderProgram] use];
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);  
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    self.paused = !self.paused;
 }
 
 /*

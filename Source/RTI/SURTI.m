@@ -140,11 +140,11 @@ typedef struct RTIUniforms *RTIUniforms;
     glUniform1fv(_uniforms->scale, 9, _scale);
     glUniform1fv(_uniforms->bias, 9, _bias);
     
+    // TODO: the typedef doesn't need to be a pointer
     SUSphericalCoordinate overhead = calloc(1, sizeof(struct SUSphericalCoordinate));
     overhead->theta = 0.35f;
     overhead->phi = M_PI;
-    [self computeWeights:overhead];
-    glUniform1fv(_uniforms->weights, 9, _weights);
+    [self updateWeights:overhead];
     
     /*
     GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(-1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 100.0f);
@@ -210,6 +210,11 @@ typedef struct RTIUniforms *RTIUniforms;
     free(_textures);
     
     _hasTexturesBound = NO;
+}
+
+- (void)updateWeights:(SUSphericalCoordinate)lightLocation {
+    [self computeWeights:lightLocation];
+    glUniform1fv(_uniforms->weights, 9, _weights);
 }
 
 - (void)computeWeights:(SUSphericalCoordinate)lightLocation {
